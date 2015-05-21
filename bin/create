@@ -1,5 +1,9 @@
 #!/usr/bin/env ruby
 require 'signupster'
 
+#0 = shop name
+#1 = your name
+#2 = your email
+#3 = your password
 Signupster.create_shop(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
 
