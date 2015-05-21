@@ -91,10 +91,8 @@ module Signupster
 
   def self.upload_theme(auth_url)
     ShopifyAPI::Base.site = auth_url
-    shop = ShopifyAPI::Shop.current
-    require 'byebug'
-    debugger
-    puts "your current theme is: #{ShopifyAPI::Theme}"
+    puts "uploading minimalist theme"
 
+    ShopifyAPI::Theme.new(name: "ultramin", src: "https://github.com/orenmazor/signupster/raw/master/theme.zip", role: "main").save! 
   end
 end
