@@ -53,7 +53,7 @@ module Signupster
 
     puts "logging you in automagically"
     admin_url = URI.parse(redirect_url)
-    login_cookie = "??"
+    login_cookie = nil
     result = RestClient.post("https://#{admin_url.host}/admin/auth/login", {login: owner_email, password: password}) do |response, request, result, &block|
       login_cookie = response.headers[:set_cookie].join(";").scan(/_secure_admin_session_id=([a-z0-9]*);/).first.first
     end
@@ -67,6 +67,26 @@ module Signupster
                              {:account_setup => config_hash, "authenticity_token" => authenticity_token}, 
                              {"Cookie" => "_secure_admin_session_id=#{login_cookie}"})
 
-    puts result.code
+
+    puts "okay, your shop is setup. generating an api key"
+
+    page = Nokogiri::HTML(RestClient.get("https://#{admin_url.host}/admin/apps/private/new", :cookies => {"_secure_admin_session_id" => login_cookie}))
+    authenticity_token = page.css("input[name='authenticity_token']")[0]["value"]
+
+    app_page = nil
+    result = RestClient.post("https://#{admin_url.host}/admin/apps/private",
+                             {"authenticity_token" => authenticity_token, "api_client" => {"title" => "its go time", "contact_email"=>owner_email}},
+                             {"Cookie" => "_secure_admin_session_id=#{login_cookie}"}) do |res, req, result, &block|
+                               app_page = res.headers[:location]
+                             end
+
+    page = RestClient.get(app_page, :cookies => {"_secure_admin_session_id" => login_cookie})
+
+    # lol ghetto++
+    authurl = "https://#{page.body.scan(/https\:\/\/([a-z0-9\:]*)@/)[1][0]}@#{admin_url.host}"
+
+    puts authurl
+
+
   end
 end
