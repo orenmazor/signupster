@@ -1,3 +1,5 @@
 #!/usr/bin/env ruby
+require 'signupster'
 
-puts "hello"
+Signupster.create_shop(ARGV[0], ARGV[1], ARGV[2], ARGV[3])
+
