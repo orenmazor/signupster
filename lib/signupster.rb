@@ -1,5 +1,6 @@
 require "signupster/version"
 
 module Signupster
-  # Your code goes here...
+  def self.create_shop(shopname, owner_name, owner_email)
+  end
 end
