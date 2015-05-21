@@ -1,4 +1,5 @@
 require "signupster/version"
+require 'shopify_api'
 require 'uri'
 require 'securerandom'
 require 'rest-client'
@@ -83,10 +84,17 @@ module Signupster
     page = RestClient.get(app_page, :cookies => {"_secure_admin_session_id" => login_cookie})
 
     # lol ghetto++
-    authurl = "https://#{page.body.scan(/https\:\/\/([a-z0-9\:]*)@/)[1][0]}@#{admin_url.host}"
+    authurl = "https://#{page.body.scan(/https\:\/\/([a-z0-9\:]*)@/)[1][0]}@#{admin_url.host}/admin"
 
-    puts authurl
+    upload_theme(authurl)
+  end
 
+  def self.upload_theme(auth_url)
+    ShopifyAPI::Base.site = auth_url
+    shop = ShopifyAPI::Shop.current
+    require 'byebug'
+    debugger
+    puts "your current theme is: #{ShopifyAPI::Theme}"
 
   end
 end
