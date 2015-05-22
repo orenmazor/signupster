@@ -87,6 +87,8 @@ module Signupster
     authurl = "https://#{page.body.scan(/https\:\/\/([a-z0-9\:]*)@/)[1][0]}@#{admin_url.host}/admin"
 
     upload_theme(authurl)
+
+    `open #{admin_url}`
   end
 
   def self.upload_theme(auth_url)
