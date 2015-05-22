@@ -1,31 +1,23 @@
 # Signupster
 
-TODO: Write a gem description
+```bundle exec create yourcoolshopname yourfirstname youremail yourpassword```
 
-## Installation
+# Help me!
 
-Add this line to your application's Gemfile:
+lol
 
-```ruby
-gem 'signupster'
-```
+# License
 
-And then execute:
+    DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+                    Version 2, December 2004 
 
-    $ bundle
+ Copyright (C) 2004 Sam Hocevar <sam@hocevar.net> 
 
-Or install it yourself as:
+ Everyone is permitted to copy and distribute verbatim or modified 
+ copies of this license document, and changing it is allowed as long 
+ as the name is changed. 
 
-    $ gem install signupster
+            DO WHAT THE FUCK YOU WANT TO PUBLIC LICENSE 
+   TERMS AND CONDITIONS FOR COPYING, DISTRIBUTION AND MODIFICATION 
 
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it ( https://github.com/[my-github-username]/signupster/fork )
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+  0. You just DO WHAT THE FUCK YOU WANT TO.
